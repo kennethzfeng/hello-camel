@@ -13,10 +13,8 @@ public class TimerRouteBuilder extends RouteBuilder {
 
     public void configure() {
         from("timer://timer1?period=1000")
-                .process(new Processor() {
-                    public void process(Exchange msg) {
-                        LOG.info("Processing {}", msg);
-                    }
-                });
+                .to("bean:processByBean1")
+                .to("bean:processAgainByBean2");
     }
+
 }
